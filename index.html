@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>新年快乐，董菁</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: url("bg.jpeg") no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Microsoft YaHei", sans-serif;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    /* 背景暗色蒙版 */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.38);
+        z-index: 0;
+    }
+
+    .container, .second {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        transition: opacity 1s ease;
+    }
+
+    .hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* 爱心 */
+    .heart {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        background: #ff4d6d;
+        transform: rotate(-45deg);
+        margin: 0 auto 30px;
+        animation: heartbeat 1.5s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background: #ff4d6d;
+        border-radius: 50%;
+    }
+
+    .heart::before {
+        top: -60px;
+        left: 0;
+    }
+
+    .heart::after {
+        left: 60px;
+        top: 0;
+    }
+
+    @keyframes heartbeat {
+        0% { transform: rotate(-45deg) scale(1); }
+        25% { transform: rotate(-45deg) scale(1.06); }
+        50% { transform: rotate(-45deg) scale(1); }
+        75% { transform: rotate(-45deg) scale(1.06); }
+        100% { transform: rotate(-45deg) scale(1); }
+    }
+
+    .text {
+        font-size: 20px;
+        line-height: 1.9;
+        letter-spacing: 1px;
+        margin-bottom: 28px;
+    }
+
+    .btn {
+        background: rgba(255,255,255,0.22);
+        border: 1px solid rgba(255,255,255,0.5);
+        padding: 10px 30px;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(2px);
+    }
+
+    .btn:hover {
+        background: rgba(255,255,255,0.38);
+    }
+
+    /* 第二页 */
+    .second {
+        position: absolute;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+    }
+
+    .second.show {
+        opacity: 1;
+    }
+
+    .name {
+        font-size: 24px;
+        margin-top: 12px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    .sign {
+        margin-top: 42px;
+        font-size: 16px;
+        opacity: 0.85;
+        letter-spacing: 3px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<!-- 第一页 -->
+<div class="container" id="first">
+    <div class="heart"></div>
+    <div class="text">
+        新岁序开，灯火可亲，<br>
+        愿时光温柔以待，<br>
+        所行皆坦途，所念皆如愿。
+    </div>
+    <button class="btn" onclick="nextPage()">继续</button>
+</div>
+
+<!-- 第二页 -->
+<div class="second" id="second">
+    <div class="text">
+        风雪尽处，是春的来信，<br>
+        万物更新，你在其中。
+    </div>
+    <div class="name">新年快乐，董菁</div>
+    <div class="sign">—— 大卓</div>
+</div>
+
+<script>
+function nextPage() {
+    const first = document.getElementById("first");
+    const second = document.getElementById("second");
+
+    first.classList.add("hidden");
+
+    setTimeout(() => {
+        second.classList.add("show");
+    }, 800);
+}
+</script>
+
+</body>
+</html>
